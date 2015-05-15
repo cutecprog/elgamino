@@ -119,7 +119,10 @@ function init() {
                         speed -= .25;
                 } else if(event.keyCode == keycode.UP_ARROW) {
                         speed += .25;
-                } 
+                } else if(event.keyCode == keycode.SHIFT) {
+                        view += Math.PI;
+                        changed = true;
+                }
         });
 
         setInterval(function() {
