@@ -84,9 +84,11 @@ function init() {
                 ctx.stroke();
 
                 ctx.beginPath();
-                ctx.rect(0,0,observer_x, observer_y)
+                ctx.arc(observer_x, observer_y, 800, 0, 2, true);
+                ctx.lineTo(observer_x, observer_y);
+                /*ctx.rect(0,0,observer_x, observer_y)
                 ctx.rect(observer_x, 0, width, observer_y)
-                ctx.rect(0,observer_y, observer_x, height)
+                ctx.rect(0,observer_y, observer_x, height)*/
                 ctx.fillStyle = "#222";
                 ctx.fill();
 
