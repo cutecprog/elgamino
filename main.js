@@ -19,7 +19,8 @@ function init() {
 	var polygons   = [];
 	var segments   = [];
         var view       = 0;
-
+        var speed      = 0;
+        
 	setup();
 	requestAnimFrame(update);
 
@@ -115,13 +116,17 @@ function init() {
                         view -= 0.05;
                         changed = true;
                 } else if(event.keyCode == keycode.DOWN_ARROW) {
-                        observer_y -= 1 * Math.sin(view+.5);
-                        observer_x -= 1 * Math.cos(view+.5);
-                        changed = true;
+                        speed -= .25;
                 } else if(event.keyCode == keycode.UP_ARROW) {
-                        observer_y += 1 * Math.sin(view+.5);
-                        observer_x += 1 * Math.cos(view+.5);
-                        changed = true;
+                        speed += .25;
                 } 
         });
+
+        setInterval(function() {
+                observer_y += speed * Math.sin(view+.5);
+                observer_x += speed * Math.cos(view+.5);
+                if(speed != 0.0)
+                        changed = true;
+        }, 50);
+
 };
