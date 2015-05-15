@@ -11,13 +11,14 @@ window.requestAnimFrame = (function() {
 })();
 
 function init() {
-	var width = 500;
-	var height = 500;
+	var width      = 500;
+	var height     = 500;
 	var observer_x = 109;
 	var observer_y = 109;
-	var changed = true;
-	var polygons = [];
-	var segments = [];
+	var changed    = true;
+	var polygons   = [];
+	var segments   = [];
+        var view       = 0;
 
 	setup();
 	requestAnimFrame(update);
@@ -84,11 +85,8 @@ function init() {
                 ctx.stroke();
 
                 ctx.beginPath();
-                ctx.arc(observer_x, observer_y, 800, 0, 2, true);
+                ctx.arc(observer_x, observer_y, 800, view, view +1, true);
                 ctx.lineTo(observer_x, observer_y);
-                /*ctx.rect(0,0,observer_x, observer_y)
-                ctx.rect(observer_x, 0, width, observer_y)
-                ctx.rect(0,observer_y, observer_x, height)*/
                 ctx.fillStyle = "#222";
                 ctx.fill();
 
@@ -121,6 +119,9 @@ function init() {
                         changed = true;
                 } else if(event.keyCode == keycode.UP_ARROW) {
                         observer_y -= 1;
+                        changed = true;
+                } else if(event.keyCode == keycode.R_SHIFT) {
+                        view += .1;
                         changed = true;
                 }
         });
