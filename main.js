@@ -83,19 +83,13 @@ function init() {
                 ctx.strokeStyle = "#222";
                 ctx.stroke();
 
-		ctx.beginPath();
-		ctx.moveTo(observer_x, observer_y);
-		for (var i = 1; i < poly.length; ++i) {
-                        x = poly[i][0] - observer_x;
-                        y = poly[i][1] - observer_y;
-                        if(x > 0 && y > 0)
-			        ctx.lineTo(poly[i][0], poly[i][1]);
-		}
-		ctx.fillStyle = "red";
-		ctx.fill();
-                ctx.strokeStyle = "black";
-                ctx.stroke()
-                
+                ctx.beginPath();
+                ctx.rect(0,0,observer_x, observer_y)
+                ctx.rect(observer_x, 0, width, observer_y)
+                ctx.rect(0,observer_y, observer_x, height)
+                ctx.fillStyle = "#222";
+                ctx.fill();
+
                 /* Draw observer */
 		ctx.beginPath();
 		ctx.arc(observer_x, observer_y, 5, 0, Math.PI*2, true);
