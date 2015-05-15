@@ -118,7 +118,16 @@ function init() {
 
         document.addEventListener('keydown', function(event) {
                 if(event.keyCode == keycode.RIGHT_ARROW) {
-                        observer_x += 5;
+                        observer_x += 1;
+                        changed = true;
+                } else if(event.keyCode == keycode.LEFT_ARROW) {
+                        observer_x -= 1;
+                        changed = true;
+                } else if(event.keyCode == keycode.DOWN_ARROW) {
+                        observer_y += 1;
+                        changed = true;
+                } else if(event.keyCode == keycode.UP_ARROW) {
+                        observer_y -= 1;
                         changed = true;
                 }
         });
