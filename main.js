@@ -107,4 +107,16 @@ function init() {
 		ctx.strokeStyle = "black";
 		ctx.stroke();
 	};
+
+        var keycode = {
+                'LEFT_ARROW': 37,
+                'RIGHT_ARROW': 39,
+                'UP_ARROW': 38,
+                'DOWN_ARROW': 40,
+                'R_SHIFT': 16
+        };
+
+        document.addEventListener('keydown', function(event) {
+                alert(event.keyCode);
+        });
 };
