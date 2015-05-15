@@ -76,12 +76,25 @@ function init() {
 		ctx.beginPath();
 		ctx.moveTo(poly[0][0], poly[0][1]);
 		for (var i = 1; i < poly.length; ++i) {
-			ctx.lineTo(poly[i][0], poly[i][1]);
+                        ctx.lineTo(poly[i][0], poly[i][1]);
 		}
-		ctx.fillStyle = "#aa8";
-		ctx.fill();
+                ctx.fillStyle = "#aa8";
+                ctx.fill();
                 ctx.strokeStyle = "#222";
                 ctx.stroke();
+
+		ctx.beginPath();
+		ctx.moveTo(observer_x, observer_y);
+		for (var i = 1; i < poly.length; ++i) {
+                        x = poly[i][0] - observer_x;
+                        y = poly[i][1] - observer_y;
+                        if(x > 0 && y > 0)
+			        ctx.lineTo(poly[i][0], poly[i][1]);
+		}
+		ctx.fillStyle = "red";
+		ctx.fill();
+                ctx.strokeStyle = "black";
+                ctx.stroke()
                 
                 /* Draw observer */
 		ctx.beginPath();
