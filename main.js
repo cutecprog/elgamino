@@ -72,17 +72,7 @@ function init() {
 
 	function draw(ctx) {
 		var poly = VisibilityPolygon.compute([observer_x, observer_y], segments);
-/*
-		for (var i = 1; i < polygons.length; ++i) {
-			ctx.beginPath();
-			ctx.moveTo(polygons[i][0][0], polygons[i][0][1]);
-			for (var j = 1; j < polygons[i].length; ++j) {
-				ctx.lineTo(polygons[i][j][0], polygons[i][j][1]);
-			}
-			ctx.fillStyle = "#222";
-			ctx.fill();
-		}
-*/
+
 		ctx.beginPath();
 		ctx.moveTo(poly[0][0], poly[0][1]);
 		for (var i = 1; i < poly.length; ++i) {
@@ -92,22 +82,13 @@ function init() {
 		ctx.fill();
                 ctx.strokeStyle = "#222";
                 ctx.stroke();
-                /*
-		for (var i = 0; i < segments.length; ++i) {
-			ctx.beginPath();
-			ctx.moveTo(segments[i][0][0], segments[i][0][1]);
-			ctx.lineTo(segments[i][1][0], segments[i][1][1]);
-			ctx.strokeStyle = "#222";
-			ctx.lineWidth = 2;
-			ctx.stroke();
-		}*/
                 
                 /* Draw observer */
 		ctx.beginPath();
 		ctx.arc(observer_x, observer_y, 5, 0, Math.PI*2, true);
-		ctx.fillStyle = "yellow";
+		ctx.fillStyle = "#665";
 		ctx.fill();
-		ctx.strokeStyle = "black";
+		ctx.strokeStyle = "#222";
 		ctx.stroke();
 	};
 
