@@ -117,7 +117,9 @@ function init() {
         };
 
         document.addEventListener('keydown', function(event) {
-                if(event.keyCode == keycode.RIGHT_ARROW)
-                        alert(event.keyCode);
+                if(event.keyCode == keycode.RIGHT_ARROW) {
+                        observer_x += 5;
+                        changed = true;
+                }
         });
 };
