@@ -104,25 +104,24 @@ function init() {
                 'RIGHT_ARROW': 39,
                 'UP_ARROW': 38,
                 'DOWN_ARROW': 40,
-                'R_SHIFT': 16
+                'SHIFT': 16
         };
 
         document.addEventListener('keydown', function(event) {
                 if(event.keyCode == keycode.RIGHT_ARROW) {
-                        observer_x += 1;
+                        view += 0.05;
                         changed = true;
                 } else if(event.keyCode == keycode.LEFT_ARROW) {
-                        observer_x -= 1;
+                        view -= 0.05;
                         changed = true;
                 } else if(event.keyCode == keycode.DOWN_ARROW) {
-                        observer_y += 1;
+                        observer_y -= 1 * Math.sin(view+.5);
+                        observer_x -= 1 * Math.cos(view+.5);
                         changed = true;
                 } else if(event.keyCode == keycode.UP_ARROW) {
-                        observer_y -= 1;
+                        observer_y += 1 * Math.sin(view+.5);
+                        observer_x += 1 * Math.cos(view+.5);
                         changed = true;
-                } else if(event.keyCode == keycode.R_SHIFT) {
-                        view += .1;
-                        changed = true;
-                }
+                } 
         });
 };
