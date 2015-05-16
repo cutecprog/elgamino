@@ -20,6 +20,7 @@ function init() {
 	var segments   = [];
         var view       = 0;
         var speed      = 0;
+        var view_width = .5;
         
 	setup();
 	requestAnimFrame(update);
@@ -63,7 +64,7 @@ function init() {
 			ctx.clearRect(0, 0, width, height);
 			ctx.beginPath();
 			ctx.rect(0, 0, width, height);
-			ctx.fillStyle = '#222';
+			ctx.fillStyle = '#00';
 			ctx.fill();
 
 			draw(ctx);
@@ -73,6 +74,7 @@ function init() {
 	};
 
 	function draw(ctx) {
+  
 		var poly = VisibilityPolygon.compute([observer_x, observer_y], segments);
 
 		ctx.beginPath();
@@ -80,24 +82,36 @@ function init() {
 		for (var i = 1; i < poly.length; ++i) {
                         ctx.lineTo(poly[i][0], poly[i][1]);
 		}
-                ctx.fillStyle = "#aa8";
+                var radgrad = ctx.createRadialGradient(
+                                observer_x,
+                                observer_y,
+                                                0,observer_x,observer_y,200);
+                radgrad.addColorStop(0, '#aa8');
+                radgrad.addColorStop(1, '#000');
+                ctx.fillStyle = radgrad;
+                /*ctx.fillStyle = "#aa8";*/
                 ctx.fill();
-                ctx.strokeStyle = "#222";
+                ctx.strokeStyle = "#00";
                 ctx.stroke();
 
                 ctx.beginPath();
-                ctx.arc(observer_x, observer_y, 800, view, view +1, true);
+                ctx.arc(observer_x, observer_y, 800, view-view_width, view+view_width, true);
                 ctx.lineTo(observer_x, observer_y);
-                ctx.fillStyle = "#222";
+                ctx.fillStyle = "#000";
                 ctx.fill();
 
-                /* Draw observer */
+                /* Draw observer 
 		ctx.beginPath();
-		ctx.arc(observer_x, observer_y, 5, 0, Math.PI*2, true);
-		ctx.fillStyle = "#665";
-		ctx.fill();
-		ctx.strokeStyle = "#222";
-		ctx.stroke();
+		ctx.arc(observer_x, observer_y, 200, 0, Math.PI*2, true);
+                var radgrad = ctx.createRadialGradient(
+                                observer_x,
+                                observer_y,
+                                                0,observer_x,observer_y,200);
+                radgrad.addColorStop(0, '#aa8');
+                radgrad.addColorStop(1, '#000');
+                ctx.fillStyle = radgrad;
+		/*ctx.fillStyle = "#665";
+		ctx.fill();*/
 	};
 
         var keycode = {
@@ -126,21 +140,21 @@ function init() {
         });
 
         setInterval(function() {
-                observer_y += speed * Math.sin(view+.5);
-                observer_x += speed * Math.cos(view+.5);
+                observer_y += speed * Math.sin(view);
+                observer_x += speed * Math.cos(view);
                 if(speed != 0.0)
                         changed = true;
         }, 50);
 
-        var left_step = true;
+        var left_step = 0;
         setInterval(function() {
                 if(speed != 0.0)
-                        if(left_step) {
-                                view += speed/8;
-                                left_step = false;
+                        if(left_step == 1) {
+                                view += speed/10;
+                                left_step = (left_step+1)%2;
                         } else {
-                                view -= speed/8;
-                                left_step = true;
+                                view -= speed/10;
+                                left_step = (left_step+1)%2;
                         }
         }, 200);
 
