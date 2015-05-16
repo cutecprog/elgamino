@@ -77,15 +77,6 @@ function init() {
   
 		var poly = VisibilityPolygon.compute([observer_x, observer_y], segments);
 
-                for (var i = 1; i < polygons.length; ++i) {
-			ctx.beginPath();
-			ctx.moveTo(polygons[i][0][0], polygons[i][0][1]);
-			for (var j = 1; j < polygons[i].length; ++j) {
-				ctx.lineTo(polygons[i][j][0], polygons[i][j][1]);
-			}
-			ctx.fillStyle = "#111";
-			ctx.fill();
-		}
 
 		ctx.beginPath();
 		ctx.moveTo(poly[0][0], poly[0][1]);
@@ -101,8 +92,8 @@ function init() {
                 radgrad.addColorStop(0, '#665');
                 radgrad.addColorStop(0.4, '#111');
                 radgrad.addColorStop(1, '#000');
+                ctx.globalAlpha = 1.0;
                 ctx.fillStyle = radgrad;
-                /*ctx.fillStyle = "#aa8";*/
                 ctx.fill();
                 ctx.strokeStyle = "#000";
                 ctx.stroke();
@@ -110,6 +101,7 @@ function init() {
                 ctx.beginPath();
                 ctx.arc(observer_x, observer_y, 800, view-view_width, view+view_width, true);
                 ctx.lineTo(observer_x, observer_y);
+                ctx.globalAlpha = 0.6;
                 ctx.fillStyle = "#000";
                 ctx.fill();
 
