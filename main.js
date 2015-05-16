@@ -110,10 +110,10 @@ function init() {
 
         document.addEventListener('keydown', function(event) {
                 if(event.keyCode == keycode.RIGHT_ARROW) {
-                        view += 0.05;
+                        view += 0.05 + speed/8;
                         changed = true;
                 } else if(event.keyCode == keycode.LEFT_ARROW) {
-                        view -= 0.05;
+                        view -= 0.05 + speed/8;
                         changed = true;
                 } else if(event.keyCode == keycode.DOWN_ARROW) {
                         speed -= .25;
@@ -131,5 +131,17 @@ function init() {
                 if(speed != 0.0)
                         changed = true;
         }, 50);
+
+        var left_step = true;
+        setInterval(function() {
+                if(speed != 0.0)
+                        if(left_step) {
+                                view += speed/8;
+                                left_step = false;
+                        } else {
+                                view -= speed/8;
+                                left_step = true;
+                        }
+        }, 200);
 
 };
