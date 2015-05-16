@@ -85,8 +85,11 @@ function init() {
                 var radgrad = ctx.createRadialGradient(
                                 observer_x,
                                 observer_y,
-                                                0,observer_x,observer_y,200);
-                radgrad.addColorStop(0, '#aa8');
+                                0,
+                                observer_x+195*Math.cos(view),
+                                observer_y+195*Math.sin(view),200);
+                radgrad.addColorStop(0, '#665');
+                radgrad.addColorStop(0.4, '#111');
                 radgrad.addColorStop(1, '#000');
                 ctx.fillStyle = radgrad;
                 /*ctx.fillStyle = "#aa8";*/
@@ -100,13 +103,15 @@ function init() {
                 ctx.fillStyle = "#000";
                 ctx.fill();
 
-                /* Draw observer 
+                /* Draw observer  
 		ctx.beginPath();
-		ctx.arc(observer_x, observer_y, 200, 0, Math.PI*2, true);
+		ctx.arc(observer_x, observer_y, 400, 0, Math.PI*2, true);
                 var radgrad = ctx.createRadialGradient(
-                                observer_x,
-                                observer_y,
-                                                0,observer_x,observer_y,200);
+                                observer_x-0*Math.cos(view),
+                                observer_y-0*Math.sin(view),
+                                0,
+                                observer_x+100*Math.cos(view),
+                                observer_y+100*Math.sin(view),200);
                 radgrad.addColorStop(0, '#aa8');
                 radgrad.addColorStop(1, '#000');
                 ctx.fillStyle = radgrad;
